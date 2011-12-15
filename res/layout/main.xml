@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="Pass Code"
+        android:text="@string/EasySetupActivity.Passcode"
         android:textSize="20sp" />
 
     <EditText
@@ -23,8 +23,8 @@
         android:layout_marginTop="5dp"
         android:editable="false"
         android:gravity="center_horizontal"
+        android:inputType="none"
         android:minWidth="180sp"
-        android:text="PIN1"
         android:textSize="30sp" />
 
     <EditText
@@ -36,8 +36,8 @@
         android:layout_marginTop="5dp"
         android:editable="false"
         android:gravity="center_horizontal"
+        android:inputType="none"
         android:minWidth="180sp"
-        android:text="PIN2"
         android:textSize="30sp" />
 
     <EditText
@@ -49,8 +49,8 @@
         android:layout_marginTop="5dp"
         android:editable="false"
         android:gravity="center_horizontal"
+        android:inputType="none"
         android:minWidth="180sp"
-        android:text="PIN3"
         android:textSize="30sp" />
-    
+
 </RelativeLayout>
