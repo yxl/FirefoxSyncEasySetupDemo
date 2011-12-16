@@ -38,12 +38,7 @@ package cn.com.mozilla.sync.easysetup;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.security.GeneralSecurityException;
-import java.util.Arrays;
 import java.util.Random;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
@@ -278,20 +273,11 @@ public class EasySetupClient {
       }
       JSONObject payload = message.getJSONObject("payload");
       BigInteger K = mJPAKEParty.generateKeyFromMessageTwo(payload);
-
-      Mac hmacSha256 = Mac.getInstance("HMACSHA256");
       byte[] zerokey = new byte[32];
-      Arrays.fill(zerokey, (byte) 0);
-      SecretKeySpec secret_key = new javax.crypto.spec.SecretKeySpec(zerokey,
-          "SHA256");
-      hmacSha256.init(secret_key);
-      byte[] key = hmacSha256.doFinal(BigIntegerHelper
-          .BigIntegerToByteArrayWithoutSign(K));
+      byte[] key = SHA.HMACSHA256(BigIntegerHelper
+          .BigIntegerToByteArrayWithoutSign(K), zerokey);
       return key;
     } catch (JSONException e) {
-      throw new JPAKEException(
-          ExceptionType.JPAKE_CLIENT_VERIFY_DESKTOP_MESSAGE_TWO_FAILED, e);
-    } catch (GeneralSecurityException e) {
       throw new JPAKEException(
           ExceptionType.JPAKE_CLIENT_VERIFY_DESKTOP_MESSAGE_TWO_FAILED, e);
     }
